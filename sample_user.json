@@ -1,0 +1,26 @@
+{
+    "display_name":"Alex Ov",
+    "external_urls":{
+       "spotify":"https://open.spotify.com/user/129893381"
+    },
+    "href":"https://api.spotify.com/v1/users/129893381",
+    "id":"129893381",
+    "images":[
+       {
+          "url":"https://scontent-ord5-1.xx.fbcdn.net/v/t1.18169-1/13707543_1401688843178198_2700036860743070692_n.jpg?stp=cp0_dst-jpg_p50x50&_nc_cat=101&ccb=1-7&_nc_sid=312bcd&_nc_ohc=jTp_PL-BYmkQ7kNvgHl8E_0&_nc_ht=scontent-ord5-1.xx&edm=AP4hL3IEAAAA&oh=00_AYDJUpGvb1czM84hapFER9sObvft8fsjY4YZKm73e_tSHA&oe=66B6560B",
+          "height":64,
+          "width":64
+       },
+       {
+          "url":"https://scontent-ord5-1.xx.fbcdn.net/v/t1.18169-1/13707543_1401688843178198_2700036860743070692_n.jpg?stp=dst-jpg_p320x320&_nc_cat=101&ccb=1-7&_nc_sid=05c18e&_nc_ohc=jTp_PL-BYmkQ7kNvgHl8E_0&_nc_ht=scontent-ord5-1.xx&edm=AP4hL3IEAAAA&oh=00_AYABD_CQfK3RO3BrQSq6IWvydPqWNm-S8xNhl4bwJ-mqjw&oe=66B6560B",
+          "height":300,
+          "width":300
+       }
+    ],
+    "type":"user",
+    "uri":"spotify:user:129893381",
+    "followers":{
+       "href":"None",
+       "total":4
+    }
+ }

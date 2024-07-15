@@ -1,0 +1,41 @@
+{
+    "collaborative":false,
+    "description":"",
+    "external_urls":{
+       "spotify":"https://open.spotify.com/playlist/1Ir68GCjAflF4M8sVSN9Of"
+    },
+    "followers":{
+       "href":"None",
+       "total":0
+    },
+    "href":"https://api.spotify.com/v1/playlists/1Ir68GCjAflF4M8sVSN9Of?additional_types=track",
+    "id":"1Ir68GCjAflF4M8sVSN9Of",
+    "images":"None",
+    "name":"My Playlist #13",
+    "owner":{
+       "display_name":"Alex Ov",
+       "external_urls":{
+          "spotify":"https://open.spotify.com/user/129893381"
+       },
+       "href":"https://api.spotify.com/v1/users/129893381",
+       "id":"129893381",
+       "type":"user",
+       "uri":"spotify:user:129893381"
+    },
+    "primary_color":"None",
+    "public":true,
+    "snapshot_id":"AAAAATHkGwxYFC5x5JglMRrao13Ni3Jx",
+    "tracks":{
+       "href":"https://api.spotify.com/v1/playlists/1Ir68GCjAflF4M8sVSN9Of/tracks?offset=0&limit=0&additional_types=track",
+       "items":[
+          
+       ],
+       "limit":0,
+       "next":"None",
+       "offset":0,
+       "previous":"None",
+       "total":0
+    },
+    "type":"playlist",
+    "uri":"spotify:playlist:1Ir68GCjAflF4M8sVSN9Of"
+ }
