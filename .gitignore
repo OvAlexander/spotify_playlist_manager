@@ -129,6 +129,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+Scripts/
 
 # Spyder project settings
 .spyderproject
@@ -173,3 +174,5 @@ cython_debug/
 
 # Built Visual Studio Code Extensions
 *.vsix
+.*
+*.cfg
