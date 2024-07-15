@@ -10,7 +10,8 @@ SPOTIPY_CLIENT_ID = os.getenv('SPOTIPY_CLIENT_ID')
 SPOTIPY_CLIENT_SECRET = os.getenv('SPOTIPY_CLIENT_SECRET')
 SPOTIPY_REDIRECT_URI = os.getenv('SPOTIPY_REDIRECT_URI')
 
-#TODO Create user data class
+# TODO Create user data class
+
 
 def user_auth():
     # Defines user authentication permissions
@@ -30,7 +31,7 @@ def user_auth():
     return spotify
 
 
-def search_song(song_title: str, artist: str, explicit:bool, ask:bool, spotify) -> str:
+def search_song(song_title: str, artist: str, explicit: bool, ask: bool, spotify) -> str:
     # query = 'remaster%2520track%3ADoxy%2520artist%3AMiles%2520Davis'
     # query = 'track%20smart%20artist%20lesserafim'
     # Create query based on input parameters inline with Spotify API format where '%20' represents a space in HTML
@@ -55,34 +56,59 @@ def search_song(song_title: str, artist: str, explicit:bool, ask:bool, spotify) 
         else:
             query_song_title = search["tracks"]["items"][0]["name"]
             query_artist = search["tracks"]["items"][0]["artists"][0]["name"]
-            print(f"SONG NOT ADDED, EXPLICIT:{query_song_title} by {query_artist}")
+            print(
+                f"SONG NOT ADDED, EXPLICIT:{query_song_title} by {query_artist}")
             track_uri = "REMOVE"
     query_song_title = search["tracks"]["items"][0]["name"]
     query_artist = search["tracks"]["items"][0]["artists"][0]["name"]
-    if ask: add = input(f"Add track? {query_song_title} by {query_artist} (Y/N): ")
-    else: add = "y"
+    if ask:
+        add = input(f"Add track? {query_song_title} by {query_artist} (Y/N): ")
+    else:
+        add = "y"
 
-    if add.lower() == "y": return track_uri
-    else: track_uri = "REMOVE"
+    if add.lower() == "y":
+        return track_uri
+    else:
+        track_uri = "REMOVE"
     return track_uri
 
-def multi_search_song(song_title: str, artist: str, explicit_check:bool, ask:bool, num_query:int, spotify) -> str:
+
+def multi_search_song(song_title: str, artist: str, explicit_check: bool, ask: bool, num_query: int, spotify) -> str:
+    """Queries Spotify for a song.
+
+    Queries spotify for a song based on the song title and artist provided and parses the dict of queries for Track Title, Artist.
+    Checks if the songs are explicit
+
+    Args:
+        song_title: Title of song track
+        artist: Artist of song track
+        explicit_check: Boolean setting to enable checks for Explicit songs
+        ask: Boolean setting to enable user prompting to return song
+        num_query: Amount of songs to be queried
+        spotify: Spotify object used to validate user and preform Spotify API operations
+
+    Returns:
+        A string with the selected song's UID. For example:
+    """
     song_title = song_title.replace(' ', '%20')
     artist = artist.replace(' ', '%20')
     query = 'track%20'+song_title+'%20artist%20'+artist
     search = spotify.search(q=query, limit=num_query, type='track')
 
-    
     for i in range(num_query):
         query_song_title = search["tracks"]["items"][i]["name"]
         query_artist = search["tracks"]["items"][i]["artists"][0]["name"]
         explicit_flag = search["tracks"]["items"][i]["explicit"]
-        if explicit_flag: print(f"EXPLICIT---Track {i+1}: {query_song_title} by {query_artist}")
-        else: print(f"CLEAN------Track {i+1}: {query_song_title} by {query_artist}")
+        if explicit_flag:
+            print(
+                f"EXPLICIT---Track {i+1}: {query_song_title} by {query_artist}")
+        else:
+            print(
+                f"CLEAN------Track {i+1}: {query_song_title} by {query_artist}")
     if num_query > 1:
         user_select = int(input(f"Select a track 1-{num_query}: "))
         user_select -= 1
-    else: 
+    else:
         user_select = 0
     query_song_title = search["tracks"]["items"][user_select]["name"]
     query_artist = search["tracks"]["items"][user_select]["artists"][0]["name"]
@@ -93,12 +119,17 @@ def multi_search_song(song_title: str, artist: str, explicit_check:bool, ask:boo
         print(f"SONG NOT ADDED, EXPLICIT:{query_song_title} by {query_artist}")
         track_uri = "REMOVE"
         return track_uri
-    
-    if ask: add = input(f"Confirm adding? {query_song_title} by {query_artist} (Y/N): ")
-    else: add = "y"
 
-    if add.lower() == "y": return track_uri
-    else: track_uri = "REMOVE"
+    if ask:
+        add = input(
+            f"Confirm adding? {query_song_title} by {query_artist} (Y/N): ")
+    else:
+        add = "y"
+
+    if add.lower() == "y":
+        return track_uri
+    else:
+        track_uri = "REMOVE"
     return track_uri
 
 
@@ -107,6 +138,8 @@ def multi_search_song(song_title: str, artist: str, explicit_check:bool, ask:boo
 
 
 def search_playlist(playlist_id: str, spotify):  # song_ids: list,
+    """
+    """
     # TODO What if they are more than 100 songs?
     song_uris = []
     playlist = spotify.user_playlist_tracks(playlist_id=playlist_id)
@@ -119,6 +152,7 @@ def search_playlist(playlist_id: str, spotify):  # song_ids: list,
 
 # def delete_playlist_songs(spotify):
 #     spotify.user_playlist_remove_specific_occurrences_of_tracks(user=user_uri, playlist_id=playlist_id, tracks=song_ids)
+
 
 def parse_songs(file_name: str) -> list:
     raw_songs = []
@@ -159,9 +193,9 @@ def main():
 
     songs = parse_songs("class_playlist.txt")
     for song in songs:
-        song_id  = multi_search_song(song[0], song[1],explicit_check=True, ask=False,num_query=1, spotify=spotify)
+        song_id = multi_search_song(
+            song[0], song[1], explicit_check=True, ask=False, num_query=1, spotify=spotify)
         print(song_id)
-    
 
     # UNCOMMENT LATER
     # song_ids = []
@@ -182,10 +216,8 @@ def main():
     # spotify.user_playlist_remove_all_occurrences_of_tracks(user=user_uri, playlist_id=playlist_id, tracks=song_ids)
     # spotify.user_playlist_add_tracks(
     #     user=user_uri, playlist_id=playlist_id, tracks=song_ids)
-    
+
     # ^^^^^^^^^^
-
-
 
     # playlist_id = 'https://open.spotify.com/playlist/1Ir68GCjAflF4M8sVSN9Of'
 
